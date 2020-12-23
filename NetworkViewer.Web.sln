@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30711.63
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetworkViewer.Web", "NetworkViewer.Web.csproj", "{E675493F-1C67-4EC3-8492-390E97E9995B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetViewer.Infrastructure", "..\NetViewer.Infrastructure\NetViewer.Infrastructure.csproj", "{379067E3-7C61-4A06-9A8E-82F5D4FA66F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E675493F-1C67-4EC3-8492-390E97E9995B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E675493F-1C67-4EC3-8492-390E97E9995B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E675493F-1C67-4EC3-8492-390E97E9995B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E675493F-1C67-4EC3-8492-390E97E9995B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{379067E3-7C61-4A06-9A8E-82F5D4FA66F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{379067E3-7C61-4A06-9A8E-82F5D4FA66F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{379067E3-7C61-4A06-9A8E-82F5D4FA66F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{379067E3-7C61-4A06-9A8E-82F5D4FA66F5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FF70B4C0-4F53-43EE-9144-F16CFF2DC75C}
+	EndGlobalSection
+EndGlobal

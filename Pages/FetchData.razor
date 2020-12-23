@@ -1,0 +1,77 @@
+﻿@page "/fetchdata"
+
+@using NetworkViewer.Web.Data
+@using NetViewer.Infrastructure.ScannerApi;
+@using NetViewer.Infrastructure;
+
+@inject FoundDeviceService Service
+
+<h1 class="display-2">Found Devices</h1>
+
+<DataGrid TItem="FoundDevice" Data="@FoundDevices"
+          ReadData="@OnReadData"
+          Sortable="true"
+          Filterable="true">
+    <DataGridColumn TItem="FoundDevice" Field="@nameof(FoundDevice.Id)"
+                    Caption="#" Sortable="true" Filterable="true" />
+
+    <DataGridColumn TItem="FoundDevice" Field="@nameof(FoundDevice.DeviceName)"
+                    Caption="Device Name" Sortable="true" Filterable="true" />
+
+    <DataGridColumn TItem="FoundDevice" Field="@nameof(FoundDevice.DeviceId)"
+                    Caption="Device Id" Sortable="true" Filterable="true" />
+
+    <DataGridColumn TItem="FoundDevice" Field="@nameof(FoundDevice.IpAddress)"
+                    Caption="IP Address" Sortable="true" Filterable="true" />
+
+    <DataGridColumn TItem="FoundDevice" Field="@nameof(FoundDevice.FoundUsing)"
+                    Caption="Found Using" Sortable="true" Filterable="true" />
+
+    <DataGridNumericColumn TItem="FoundDevice" Field="@nameof(FoundDevice.FoundAt)" Caption="Found At" Sortable="true" Filterable="true">
+        <DisplayTemplate>
+            @{
+                var date = (context as FoundDevice)?.FoundAt;
+                if (date != null)
+                {
+                    @($"{date.Value.ToString("dddd, dd MMMM yyyy")}")
+                }
+            }
+        </DisplayTemplate>
+    </DataGridNumericColumn>
+</DataGrid>
+
+@code
+{
+    private FoundDevice[] FoundDevices;
+
+    protected override async Task OnInitializedAsync()
+    {
+        FoundDevices = (await Service.GetDevicesAsync()).ToArray();
+    }
+
+    async Task OnReadData(DataGridReadDataEventArgs<FoundDevice> e)
+    {
+        var query = ((await Service.GetDevicesAsync())).AsQueryable();
+        FoundDevice[] sorted = null;
+
+        #region Sort results
+
+        foreach (var column in e.Columns.Where(x => x.Direction != SortDirection.None))
+        {
+            switch (column.Direction)
+            {
+                case SortDirection.Ascending:
+                    sorted = query.OrderBy(x => $"{column.Field} asc").ToArray();
+                    break;
+                case SortDirection.Descending:
+                    sorted = query.OrderBy($"{column.Field} dsc").ToArray();
+                    break;
+            }
+        }
+
+        FoundDevices = sorted;
+        #endregion
+
+        StateHasChanged();
+    }
+}
